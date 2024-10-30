@@ -1,84 +1,95 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Module05Exercise01.ViewModel"
              x:Class="Module05Exercise01.View.ViewEmployee"
              Title="Adventus Employees"
              BackgroundColor="White">
-    <VerticalStackLayout Padding="20" Spacing="15">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
 
-        <Image
+            <Image
                 Source="companylogo.png"
                 HeightRequest="150"
                 Aspect="AspectFit"
-                SemanticProperties.Description="dot net bot" />
-        
-        <Label Text="Adventus Employee Information"
-               FontSize="24"
-               FontAttributes="Bold"
-               TextColor="Black"
-               HorizontalOptions="Center"/>
+                SemanticProperties.Description="Company Logo" />
 
-        <!-- Table Header -->
-        <Grid Padding="5">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
+            <Label Text="Adventus Employee Information"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   TextColor="Black"
+                   HorizontalOptions="Center"/>
 
-            <Label Text="Name" FontAttributes="Bold" TextColor="Black" HorizontalOptions="Center" BackgroundColor="White"/>
-            <Label Text="Address" FontAttributes="Bold" TextColor="Black" HorizontalOptions="Center" Grid.Column="1" BackgroundColor="White"/>
-            <Label Text="Email" FontAttributes="Bold" TextColor="Black" HorizontalOptions="Center" Grid.Column="2" BackgroundColor="White"/>
-            <Label Text="Contact No" FontAttributes="Bold" TextColor="Black" HorizontalOptions="Center" Grid.Column="3" BackgroundColor="White"/>
-        </Grid>
+            <!-- Table Header -->
+            <Grid Padding="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
 
-        <!-- Employee List -->
-        <ListView ItemsSource="{Binding EmployeeList}" SeparatorVisibility="None">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <Grid Padding="5" BackgroundColor="White">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
+                <Label Text="Name" FontAttributes="Bold" TextColor="Black" HorizontalOptions="Center" BackgroundColor="White"/>
+                <Label Text="Address" FontAttributes="Bold" TextColor="Black" HorizontalOptions="Center" Grid.Column="1" BackgroundColor="White"/>
+                <Label Text="Email" FontAttributes="Bold" TextColor="Black" HorizontalOptions="Center" Grid.Column="2" BackgroundColor="White"/>
+                <Label Text="Contact No" FontAttributes="Bold" TextColor="Black" HorizontalOptions="Center" Grid.Column="3" BackgroundColor="White"/>
+            </Grid>
 
-                            <BoxView Color="Black" WidthRequest="1" VerticalOptions="Fill" Grid.Column="0"/>
-                            <BoxView Color="Black" WidthRequest="1" VerticalOptions="Fill" Grid.Column="1"/>
-                            <BoxView Color="Black" WidthRequest="1" VerticalOptions="Fill" Grid.Column="2"/>
-                            <BoxView Color="Black" WidthRequest="1" VerticalOptions="Fill" Grid.Column="3"/>
+            <!-- Employee List -->
+            <ListView ItemsSource="{Binding EmployeeList}" SelectedItem="{Binding SelectedEmployee}" SeparatorVisibility="None">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Padding="5" BackgroundColor="White">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
 
-                            <Label Text="{Binding Name}" TextColor="Black" HorizontalOptions="Center" />
-                            <Label Text="{Binding Address}" TextColor="Black" HorizontalOptions="Center" Grid.Column="1" />
-                            <Label Text="{Binding Email}" TextColor="Black" HorizontalOptions="Center" Grid.Column="2" />
-                            <Label Text="{Binding ContactNo}" TextColor="Black" HorizontalOptions="Center" Grid.Column="3" />
-                        </Grid>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+                                <Label Text="{Binding Name}" TextColor="Black" HorizontalOptions="Center" />
+                                <Label Text="{Binding Address}" TextColor="Black" HorizontalOptions="Center" Grid.Column="1" />
+                                <Label Text="{Binding Email}" TextColor="Black" HorizontalOptions="Center" Grid.Column="2" />
+                                <Label Text="{Binding ContactNo}" TextColor="Black" HorizontalOptions="Center" Grid.Column="3" />
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
 
-        <Button Text="Load Data" Command="{Binding LoadDataCommand}" 
-                BackgroundColor="Black" TextColor="White" 
-                HorizontalOptions="Fill"/>
+            <Button Text="Load Data" Command="{Binding LoadDataCommand}" 
+                    BackgroundColor="Black" TextColor="White" 
+                    HorizontalOptions="Fill"/>
 
-        <Label x:Name="ConnectionStatusLabel"
-               Text="{Binding StatusMessage}"
-               FontSize="18"
-               TextColor="Red"
-               HorizontalOptions="Center"/>
+            <Label x:Name="ConnectionStatusLabel"
+                   Text="{Binding StatusMessage}"
+                   FontSize="18"
+                   TextColor="Red"
+                   HorizontalOptions="Center"/>
 
-        <!-- Back Button -->
-        <Button Text="Back to Main Page" 
-                Clicked="OnBackButtonClicked"
-                HorizontalOptions="Fill"
-                BackgroundColor="Black" 
-                TextColor="White"/>
-    </VerticalStackLayout>
+            <!-- Add New Employee Section -->
+            <Label Text="Add New Employee" FontSize="Large" HorizontalOptions="Center" />
+            <Entry Placeholder="Name" Text="{Binding NewEmployeeName}" />
+            <Entry Placeholder="Address" Text="{Binding NewEmployeeAddress}" />
+            <Entry Placeholder="Email" Text="{Binding NewEmployeeEmail}" />
+            <Entry Placeholder="Contact No" Text="{Binding NewEmployeeContactNo}" />
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                <Button Text="Add Employee" Command="{Binding AddEmployeeCommand}" BackgroundColor="Black" TextColor="White"/>
+
+                <Button Text="Delete Employee" Command="{Binding DeleteEmployeeCommand}" IsEnabled="{Binding IsEmployeeSelected}" BackgroundColor="Black" TextColor="White"/>
+            </StackLayout>
+
+            <!-- Back Button -->
+            <Button Text="Back to Main Page" 
+                    Clicked="OnBackButtonClicked"
+                    HorizontalOptions="Fill"
+                    BackgroundColor="Black" 
+                    TextColor="White"/>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
