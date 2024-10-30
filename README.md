@@ -1,1 +1,5 @@
-
+![Home Page](https://github.com/user-attachments/assets/40e8e8ee-2326-49e6-a76c-7db117879418)
+![Adding](https://github.com/user-attachments/assets/e6848495-d97e-4a04-ac05-6a210ee964d3)
+![Editing](https://github.com/user-attachments/assets/6d2fa7f6-8de7-4d87-b689-419af4de46f8)
+![Confirm Delete](https://github.com/user-attachments/assets/1e9b85b3-c7b1-49b9-8064-fc15e0db3ac9)
+![Deleted](https://github.com/user-attachments/assets/6a16d1a7-da73-43fa-8e72-408ce7026442)
